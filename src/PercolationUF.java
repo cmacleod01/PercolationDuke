@@ -9,8 +9,8 @@ public class PercolationUF implements IPercolate {
 	private int mySize;
 	
 	public PercolationUF(int size, IUnionFind finder) { //create object
-		VTOP = size;
-		VBOTTOM = (size*2);
+		VTOP = size*size;
+		VBOTTOM = (size*size) +1;
 		finder.initialize(size*size + 2);
 		myFinder = finder;
 		myGrid = new boolean[size][size];
@@ -39,7 +39,7 @@ protected void updateOnOpen(int row, int col) {
 		if(row==0){ //if in top row
 			myFinder.union(getIndex(row,col),VTOP);
 		}
-		if(row==mySize){ //if in bottom row
+		if(row==mySize-1){ //if in bottom row
 			myFinder.union(getIndex(row,col), VBOTTOM);
 		}
 		if(inBounds(row+1,col) && myGrid[row+1][col]) {
@@ -95,7 +95,7 @@ public int numberOfOpenSites() { //check for bounds
 		if (myGrid[row][col] != false)
 			return;
 		myOpenCount += 1;
-		myGrid[row][col] = true;
+		myGrid[row][col] = false;
 		if (row == 0) {
 			myGrid[row][col] = true;
 		}
