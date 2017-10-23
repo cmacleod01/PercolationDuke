@@ -2,12 +2,12 @@
 import java.util.Arrays;
 
 public class PercolationUF implements IPercolate {
-	public IUnionFind myFinder;
-	public int myOpenCount;
-	protected boolean[][] myGrid;
-	private final int VTOP;
-	private final int VBOTTOM;
-	private int mySize;
+	public IUnionFind myFinder; //initialize
+	public int myOpenCount;//initialize
+	protected boolean[][] myGrid;//initialize
+	private final int VTOP;//initialize
+	private final int VBOTTOM;//initialize
+	private int mySize;//initialize
 	
 	public PercolationUF(int size, IUnionFind finder) { //create object
 		VTOP = size*size; //set top
@@ -30,13 +30,13 @@ public class PercolationUF implements IPercolate {
 		return index;
 	}
 	
-protected boolean inBounds(int row, int col) {
+protected boolean inBounds(int row, int col) { //checks bounds
 		if (row < 0 || row >= mySize) return false;
 		if (col < 0 || col >= mySize) return false;
 		return true;
 	}
 	
-protected void updateOnOpen(int row, int col) {
+protected void updateOnOpen(int row, int col) { //check neighbors and union 
 		if(row==0 && inBounds(row,col)){ //if in top row
 			myFinder.union(getIndex(row,col),VTOP);
 			
@@ -65,16 +65,16 @@ protected void updateOnOpen(int row, int col) {
 		
 	}
 @Override
-	public boolean isOpen(int row, int col) {
+	public boolean isOpen(int row, int col) { //check if cell is open
 	if(!inBounds(row,col)) {
 		throw new IndexOutOfBoundsException("Index " + row + "," + col + " out of bounds");
 	}
-//	System.out.println(row);
+
 		return myGrid[row][col];
 	}
 
 @Override
-	public boolean isFull(int row, int col) {
+	public boolean isFull(int row, int col) { //check if full
 	if(!inBounds(row,col)) {
 		throw new IndexOutOfBoundsException("Index " + row + "," + col + " out of bounds");
 	}
@@ -97,13 +97,13 @@ public int numberOfOpenSites() { //check for bounds
 }
 
 @Override
-	public void open(int row, int col) {
+	public void open(int row, int col) { //open cells
 	if(!inBounds(row,col)) {
 		throw new IndexOutOfBoundsException("Index " + row + "," + col + " out of bounds");
 	}
 		if (myGrid[row][col] != false)
 			return;
-		myOpenCount += 1;
+		myOpenCount += 1; //update count
 		myGrid[row][col] = true;
 		if (row == 0) {
 			myGrid[row][col] = true;
