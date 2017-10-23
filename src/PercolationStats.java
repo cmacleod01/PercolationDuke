@@ -21,7 +21,6 @@ public class PercolationStats {
 
 		int size = n;
 		int trials = t;
-		if(n)
 		array = new double[t];
 		for(int j = 0; j<t; j++) {
 			IUnionFind finder = new QuickFind();
