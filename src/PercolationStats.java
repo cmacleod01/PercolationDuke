@@ -18,10 +18,15 @@ public class PercolationStats {
 	public int trials;
 	
 	
+	
 	public PercolationStats(int n, int t) { //create object
 
 		int size = n;
 		int trials = t;
+		if(n<=0 || t<=0) {
+			throw new IllegalArgumentException("Out of bounds!!");
+		}
+		System.out.println(trials);
 		array = new double[t];
 		for(int j = 0; j<t; j++) {
 			IUnionFind finder = new QuickFind();
@@ -42,7 +47,7 @@ public class PercolationStats {
 			}
 		}
 	}
-	public static double mean() {
+	public double mean() {
         if (array.length == 0) return Double.NaN; 
         double sum = 0.0;
         for(double each : array) {
@@ -52,12 +57,11 @@ public class PercolationStats {
     }
 
 //
-	public static double stddev() {
+	public double stddev() {
 		if (array.length == 0) return Double.NaN;
         double avg = mean();
         double sum = 0.0;
         for (int i = 0; i < array.length; i++) {
-        	System.out.println(array[i]);
             sum += (array[i] - avg) * (array[i] - avg);
         }
         return Math.sqrt(sum / (array.length - 1));
@@ -65,18 +69,20 @@ public class PercolationStats {
     }
 	
 	   public double confidenceLow() {
-			return mean() - ((1.96*stddev())/Math.sqrt(trials));
+		   System.out.println(mean() - ((1.96*(stddev())/Math.sqrt(trials)))); 
+			return (this.mean() - (1.96 * this.stddev()) / Math.sqrt(trials)) ;
 		}
 
 	   public double confidenceHigh() {
-			return mean() + ((1.96 * stddev())/Math.sqrt(trials));
+		   System.out.println(mean() + ((1.96*(stddev())/Math.sqrt(trials)))); 
+		   return (this.mean() + (1.96 * this.stddev()) / Math.sqrt(trials)) ;
 		}
 
 	
 	
 	public static void main(String[] args) {
-//		PercolationStats newobj = new PercolationStats(25, 10);
-//		
+		PercolationStats newobj = new PercolationStats(20, 10);
+		
 //		System.out.println(PercolationStats.mean());
 //		System.out.println(PercolationStats.stddev());
 //		
