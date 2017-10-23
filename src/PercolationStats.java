@@ -23,7 +23,7 @@ public class PercolationStats {
 	public PercolationStats(int n, int t) { //create object for analysis
 
 		int size = n;
-		int trials = t;
+		trials = t;
 		if(n<=0 || t<=0) { //check bounds
 			throw new IllegalArgumentException("Out of bounds!!");
 		}
