@@ -25,7 +25,7 @@ public class PercolationUF implements IPercolate {
 		if(!inBounds(row,col)) {
 			throw new IndexOutOfBoundsException("Index " + row + "," + col + " out of bounds");
 		}
-		int index = row*(mySize+col);
+		int index = (row*mySize)+col;
 		return index;
 	}
 	
@@ -36,23 +36,29 @@ protected boolean inBounds(int row, int col) {
 	}
 	
 protected void updateOnOpen(int row, int col) {
-		if(row==0){ //if in top row
+		if(row==0 && inBounds(row,col)){ //if in top row
 			myFinder.union(getIndex(row,col),VTOP);
+			
 		}
-		if(row==mySize-1){ //if in bottom row
+		if(row==mySize-1 && inBounds(row,col)){ //if in bottom row
 			myFinder.union(getIndex(row,col), VBOTTOM);
+			
 		}
 		if(inBounds(row+1,col) && myGrid[row+1][col]) {
 			myFinder.union(getIndex(row+1,col), getIndex(row,col));
+		
 		}
 		if(inBounds(row-1,col) && myGrid[row-1][col]) {
 			myFinder.union(getIndex(row-1,col), getIndex(row,col));
+			
 		}
 		if(inBounds(row,col+1) && myGrid[row][col+1]) {
 			myFinder.union(getIndex(row,col+1), getIndex(row,col));
+			
 		}
 		if(inBounds(row,col-1) && myGrid[row][col-1]) {
 			myFinder.union(getIndex(row,col-1), getIndex(row,col));
+			
 		}
 		
 		
@@ -63,7 +69,7 @@ protected void updateOnOpen(int row, int col) {
 		throw new IndexOutOfBoundsException("Index " + row + "," + col + " out of bounds");
 	}
 //	System.out.println(row);
-		return myGrid[row][col] != false;
+		return myGrid[row][col];
 	}
 
 @Override
@@ -71,7 +77,9 @@ protected void updateOnOpen(int row, int col) {
 	if(!inBounds(row,col)) {
 		throw new IndexOutOfBoundsException("Index " + row + "," + col + " out of bounds");
 	}
-		return myGrid[row][col] == true;
+//		return myGrid[row][col] == true;
+	return myFinder.connected(VTOP, getIndex(row,col));
+		
 	}
 
 @Override
@@ -95,7 +103,7 @@ public int numberOfOpenSites() { //check for bounds
 		if (myGrid[row][col] != false)
 			return;
 		myOpenCount += 1;
-		myGrid[row][col] = false;
+		myGrid[row][col] = true;
 		if (row == 0) {
 			myGrid[row][col] = true;
 		}
