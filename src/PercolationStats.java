@@ -15,6 +15,7 @@ public class PercolationStats {
 	public static int RANDOM_SEED = 1234;
 	public static Random ourRandom = new Random(RANDOM_SEED);
 	public static double[] array;
+	public int trials;
 	
 	
 	public PercolationStats(int n, int t) { //create object
@@ -62,14 +63,15 @@ public class PercolationStats {
         return Math.sqrt(sum / (array.length - 1));
    
     }
-	   public double confidenceLow()   {
-		   return 0.0;
-		   
-	   }
-	   public double confidenceHigh()   {
-		   return 0.0;
-		   
-	   }
+	
+	   public double confidenceLow() {
+			return mean() - ((1.96*stddev())/Math.sqrt(trials));
+		}
+
+	   public double confidenceHigh() {
+			return mean() + ((1.96 * stddev())/Math.sqrt(trials));
+		}
+
 	
 	
 	public static void main(String[] args) {
