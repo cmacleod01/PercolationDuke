@@ -1,3 +1,4 @@
+//Carolyn Macleod
 import java.util.*;
 
 
@@ -15,7 +16,7 @@ public class PercolationStats {
 	public static int RANDOM_SEED = 1234;
 	public static Random ourRandom = new Random(RANDOM_SEED);
 	public static double[] array;
-	public int trials;
+	public static int trials;
 	
 	
 	
@@ -47,7 +48,7 @@ public class PercolationStats {
 			}
 		}
 	}
-	public double mean() {
+	public static double mean() {
         if (array.length == 0) return Double.NaN; 
         double sum = 0.0;
         for(double each : array) {
@@ -57,7 +58,7 @@ public class PercolationStats {
     }
 
 //
-	public double stddev() {
+	public static double stddev() {
 		if (array.length == 0) return Double.NaN;
         double avg = mean();
         double sum = 0.0;
@@ -68,23 +69,23 @@ public class PercolationStats {
    
     }
 	
-	   public double confidenceLow() {
-		   System.out.println(mean() - ((1.96*(stddev())/Math.sqrt(trials)))); 
-			return (this.mean() - (1.96 * this.stddev()) / Math.sqrt(trials)) ;
+	   public static double confidenceLow() {
+//		   System.out.println(mean() - ((1.96*(stddev())/Math.sqrt(trials)))); 
+			return (mean() - (1.96 * stddev()) / Math.sqrt(trials)) ;
 		}
 
-	   public double confidenceHigh() {
-		   System.out.println(mean() + ((1.96*(stddev())/Math.sqrt(trials)))); 
-		   return (this.mean() + (1.96 * this.stddev()) / Math.sqrt(trials)) ;
+	   public static double confidenceHigh() {
+//		   System.out.println(mean() + ((1.96*(stddev())/Math.sqrt(trials)))); 
+		   return (mean() + (1.96 * stddev()) / Math.sqrt(trials)) ;
 		}
 
 	
 	
 	public static void main(String[] args) {
 		PercolationStats newobj = new PercolationStats(20, 10);
-		
-//		System.out.println(PercolationStats.mean());
-//		System.out.println(PercolationStats.stddev());
+//		
+//		System.out.println(PercolationStats.confidenceLow());
+//		System.out.println(PercolationStats.confidenceHigh());
 //		
 	}
 }

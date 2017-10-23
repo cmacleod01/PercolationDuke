@@ -1,3 +1,4 @@
+//Carolyn Macleod
 import java.util.Arrays;
 
 public class PercolationUF implements IPercolate {
@@ -9,7 +10,7 @@ public class PercolationUF implements IPercolate {
 	private int mySize;
 	
 	public PercolationUF(int size, IUnionFind finder) { //create object
-		VTOP = size*size;
+		VTOP = size*size; //set top
 		VBOTTOM = (size*size) +1;
 		finder.initialize(size*size + 2);
 		myFinder = finder;

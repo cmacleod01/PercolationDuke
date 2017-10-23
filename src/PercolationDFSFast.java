@@ -1,4 +1,4 @@
-
+//Carolyn Macleod
 public class PercolationDFSFast extends PercolationDFS {
 	
 	public PercolationDFSFast(int n) {
