@@ -62,16 +62,15 @@ public class PercolationStats {
         return Math.sqrt(sum / (array.length - 1));
    
     }
-//	   public double confidenceLow()   {
-//		   
-//	   }
-//	   public double confidenceHigh()   {
-//		   
-//	   }
-//	   public static void main(String[] args) {
-//		   
-//	   }
-//	
+	   public double confidenceLow()   {
+		   return 0.0;
+		   
+	   }
+	   public double confidenceHigh()   {
+		   return 0.0;
+		   
+	   }
+	
 	
 	public static void main(String[] args) {
 		PercolationStats newobj = new PercolationStats(25, 10);
