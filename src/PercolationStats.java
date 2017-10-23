@@ -21,6 +21,7 @@ public class PercolationStats {
 
 		int size = n;
 		int trials = t;
+		if(n)
 		array = new double[t];
 		for(int j = 0; j<t; j++) {
 			IUnionFind finder = new QuickFind();
@@ -73,10 +74,10 @@ public class PercolationStats {
 	
 	
 	public static void main(String[] args) {
-		PercolationStats newobj = new PercolationStats(25, 10);
-		
-		System.out.println(PercolationStats.mean());
-		System.out.println(PercolationStats.stddev());
-		
+//		PercolationStats newobj = new PercolationStats(25, 10);
+//		
+//		System.out.println(PercolationStats.mean());
+//		System.out.println(PercolationStats.stddev());
+//		
 	}
 }

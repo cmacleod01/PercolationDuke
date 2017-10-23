@@ -25,7 +25,7 @@ public class PercolationDFSFast extends PercolationDFS {
 		if (row == 0) {
 			myGrid[row][col]	 = FULL;
 		}
-		updateOnOpen(row,col);
+		super.updateOnOpen(row,col);
 		
 }
 	
@@ -34,7 +34,7 @@ public class PercolationDFSFast extends PercolationDFS {
 		if(!inBounds(row,col)) {
 			throw new IndexOutOfBoundsException("Index " + row + "," + col + " out of bounds");
 		}
-		return myGrid[row][col] == FULL;
+		return super.myGrid[row][col] == FULL;
 	}
 	
 	@Override
@@ -44,31 +44,31 @@ public class PercolationDFSFast extends PercolationDFS {
 			throw new IndexOutOfBoundsException("Index " + row + "," + col + " out of bounds");}
 		
 		if(isFull(row,col)) {
-			dfs(row,col);
-			myGrid[row][col] = FULL;
+			super.dfs(row,col);
+			super.myGrid[row][col] = FULL;
 		}
 		if(inBounds(row-1,col)) {
 			if(isFull(row - 1, col)) {
-				dfs(row - 1, col);
-				myGrid[row][col] = FULL;
+				super.dfs(row - 1, col);
+				super.myGrid[row][col] = FULL;
 		}
 		}
 		if(inBounds(row,col-1)) {
 			if(isFull(row, col - 1)) {
-				dfs(row, col - 1);
-				myGrid[row][col] = FULL;
+				super.dfs(row, col - 1);
+				super.myGrid[row][col] = FULL;
 		}
 		}
 		if(inBounds(row,col + 1)) {
 			if(isFull(row, col + 1)) {
-				dfs(row, col + 1);
-				myGrid[row][col] = FULL;
+				super.dfs(row, col + 1);
+				super.myGrid[row][col] = FULL;
 		}
 		}
 		if(inBounds(row+1,col)) {
 			if(isFull(row + 1, col)) {
-				dfs(row + 1, col);
-				myGrid[row][col] = FULL;
+				super.dfs(row + 1, col);
+				super.myGrid[row][col] = FULL;
 		}
 		}
 	
