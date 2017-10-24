@@ -30,12 +30,12 @@ public class PercolationStats {
 		}
 		array = new double[trials]; //store the values
 		for(int j = 0; j<trials; j++) { //store each cell value in list
-//			IUnionFind finder = new QuickFind();
+			IUnionFind finder = new QuickFind();
 //			IUnionFind finder = new QuickUWPC();
 			
-			IPercolate perc = new PercolationDFS(size);
+//			IPercolate perc = new PercolationDFS(size);
 //			IPercolate perc = new PercolationDFSFast(size,finder);
-//			IPercolate perc = new PercolationUF(size,finder);
+			IPercolate perc = new PercolationUF(size,finder);
 			ArrayList<Integer> orderList = new ArrayList<Integer>();
 			for(int i=0;i<(size*size);i++) {
 				orderList.add(i);
@@ -89,7 +89,7 @@ public class PercolationStats {
 	public static void main(String[] args) { //execute
 		double start = System.nanoTime();
 //		PercolationStats tester = new PercolationStats(size,trials);
-		PercolationStats tester = new PercolationStats(100,50);
+//		PercolationStats tester = new PercolationStats(100,50);
 		double end = System.nanoTime();
 		double time = (end-start)/1e9; // total time 
 	
